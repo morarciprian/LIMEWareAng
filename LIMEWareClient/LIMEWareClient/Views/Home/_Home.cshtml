@@ -1,11 +1,25 @@
-﻿<!-- ko with: home -->
-<div class="jumbotron">
+﻿<div class="jumbotron">
     <p class="lead">LIMEWare Test Client</p>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <p>Welcome {{name}}</p> <input palceholder="type your name..." ng-model="name" name="name"/>
-    </div>
+
+<div ng-controller="ParametersController as limeware">
+    <h1>{{"LIMEW"+"are"}}</h1>
+    <p>Welcome {{name}}</p> <input palceholder="type your name..." ng-model="name" name="name" />
+    <ul class="nav nav-pills">
+        <li class="list-group-item" ng-repeat="parameter in limeware.parameters | orderBy:'-value' | limitTo:3">
+            <h2 ng-click="tab = 1">
+                {{parameter.msisdn}}
+            </h2>
+            <em class="pull-right">Value={{parameter.value | currency}} Expiry={{parameter.expiry | date:'MM/dd/yyyy hh:mma'}}</em>
+            {{tab}}
+        </li>
+    </ul>
+    @*<div ng-repeat="parameter in limeware.parameters">
+            <p>MSISDN: {{parameter.msisdn}}</p>
+            <p>Value: ${{parameter.value}}</p>
+            <p>Expiry: {{parameter.expiry}}</p>
+
+            <button ng-show="parameter.canShow">Add</button>
+        </div>*@
 </div>
 
-<!-- /ko -->
