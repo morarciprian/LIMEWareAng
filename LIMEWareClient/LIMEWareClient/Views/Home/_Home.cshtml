@@ -5,7 +5,7 @@
 <div ng-controller="ParametersController as limeware">
     <h1>{{"LIMEW"+"are"}}</h1>
     <p>Welcome {{name}}</p> <input palceholder="type your name..." ng-model="name" name="name" />
-    <ul class="nav nav-pills">
+    @*<ul class="nav nav-pills">
         <li class="list-group-item" ng-repeat="parameter in limeware.parameters | orderBy:'-value' | limitTo:3">
             <h2 ng-click="tab = 1">
                 {{parameter.msisdn}}
@@ -13,13 +13,24 @@
             <em class="pull-right">Value={{parameter.value | currency}} Expiry={{parameter.expiry | date:'MM/dd/yyyy hh:mma'}}</em>
             {{tab}}
         </li>
-    </ul>
+    </ul>*@
     @*<div ng-repeat="parameter in limeware.parameters">
-            <p>MSISDN: {{parameter.msisdn}}</p>
-            <p>Value: ${{parameter.value}}</p>
-            <p>Expiry: {{parameter.expiry}}</p>
+        <p>MSISDN: {{parameter.msisdn}}</p>
+        <p>Value: ${{parameter.value}}</p>
+        <p>Expiry: {{parameter.expiry}}</p>
 
-            <button ng-show="parameter.canShow">Add</button>
-        </div>*@
+        <button ng-click="add">Add</button>
+    </div>*@
+    @*{{databalance | json}}*@
+    <table border="1">
+        <tr ng-repeat="parameter in databalance">
+            <td>dataExpiry: {{parameter.dataExpiry}}</td>
+            <td>dataValue: ${{parameter.dataValue}}</td>
+            <td>dataValueSpecified: {{parameter.dataValueSpecified}}</td>
+            <td>sapcRetCode: {{parameter.sapcRetCode}}</td>
+            <td>sapcRetCodeSpecified: {{parameter.sapcRetCodeSpecified}}</td>
+        </tr>
+    </table>
+    <button ng-click="add()">Add</button>
 </div>
 
