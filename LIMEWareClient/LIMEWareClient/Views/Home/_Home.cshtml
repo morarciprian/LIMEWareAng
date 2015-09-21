@@ -2,25 +2,19 @@
     <p class="lead">LIMEWare Test Client</p>
 </div>
 
+<style type="text/css">
+    .css-form input.ng-invalid.ng-touched {
+        background-color: #FA787E;
+    }
+
+    .css-form input.ng-valid.ng-touched {
+        background-color: #78FA89;
+    }
+</style>
+
 <div ng-controller="ParametersController as limeware">
     <h1>{{"LIMEW"+"are"}}</h1>
     <p>Welcome {{name}}</p> <input palceholder="type your name..." ng-model="name" name="name" />
-    @*<ul class="nav nav-pills">
-        <li class="list-group-item" ng-repeat="parameter in limeware.parameters | orderBy:'-value' | limitTo:3">
-            <h2 ng-click="tab = 1">
-                {{parameter.msisdn}}
-            </h2>
-            <em class="pull-right">Value={{parameter.value | currency}} Expiry={{parameter.expiry | date:'MM/dd/yyyy hh:mma'}}</em>
-            {{tab}}
-        </li>
-    </ul>*@
-    @*<div ng-repeat="parameter in limeware.parameters">
-        <p>MSISDN: {{parameter.msisdn}}</p>
-        <p>Value: ${{parameter.value}}</p>
-        <p>Expiry: {{parameter.expiry}}</p>
-
-        <button ng-click="add">Add</button>
-    </div>*@
     @*{{databalance | json}}*@
     <table border="1">
         <tr ng-repeat="parameter in databalance">
@@ -32,5 +26,25 @@
         </tr>
     </table>
     <button ng-click="add()">Add</button>
+    <form novalidate class="css-form">
+        dataExpiry: <input type="text" ng-model="tempParameters.dataExpiry" required /><br />
+        dataValue: <input type="text" ng-model="tempParameters.dataValue" required /><br />
+        dataValueSpecified: <input type="checkbox" ng-model="tempParameters.dataValueSpecified" required /><br />
+        sapcRetCode: <input type="text" ng-model="tempParameters.sapcRetCode" required /><br />
+        sapcRetCodeSpecified: <input type="checkbox" ng-model="tempParameters.sapcRetCodeSpecified" required /><br />
+    </form>
+    <pre>Temp params = {{tempParameters | json}}</pre>
+   
+     <form novalidate class="css-form">
+        msisdn<input type="text" ng-model="sendParameters.msisdn" required /><br />
+        promoId<input type="text" ng-model="sendParameters.promoId" required /><br />
+        balanceChangeValue<input type="text" ng-model="sendParameters.balanceChangeValue" required /><br />
+        balanceLabel<input type="text" ng-model="sendParameters.balanceLabel" required /><br />
+        eobTimeOverride<input type="text" ng-model="sendParameters.eobTimeOverride" required /><br />
+        expiryChange<input type="text" ng-model="sendParameters.expiryChange" required /><br />
+        extendFromEOB<input type="text" ng-model="sendParameters.extendFromEOB" required /><br />
+    </form>
+    <pre>Temp params = {{sendParameters | json}}</pre>
+    <button ng-click="send()">Send</button>
 </div>
 

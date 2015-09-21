@@ -41,11 +41,11 @@ namespace FlexibleRewardingTestClient
             }
         }
 
-        public string externalBalanceUpdate(long msisdn, string promoId, string balanceChangeValue, string balanceLabel, string eobTimeOverride, string expiryChange, string extendFromEOB)
+        public string externalBalanceUpdate(Parameters par)
         {
             try
             {
-                externalBalanceUpdateChangeList changeList = new externalBalanceUpdateChangeList { changeBalance = new externalBalanceUpdateChangeListChangeBalance[] { new externalBalanceUpdateChangeListChangeBalance { balanceChangeValue = balanceChangeValue, balanceLabel = balanceLabel, eobTimeOverride = eobTimeOverride, expiryChange = expiryChange, extendFromEOB = extendFromEOB } } };
+                externalBalanceUpdateChangeList changeList = new externalBalanceUpdateChangeList { changeBalance = new externalBalanceUpdateChangeListChangeBalance[] { new externalBalanceUpdateChangeListChangeBalance { balanceChangeValue = par.balanceChangeValue, balanceLabel = par.balanceLabel, eobTimeOverride = par.eobTimeOverride, expiryChange = par.expiryChange, extendFromEOB = par.extendFromEOB } } };
                 int returnCode;
                 bool returnCodeSpecified;
                 string returnDescription;
@@ -53,7 +53,7 @@ namespace FlexibleRewardingTestClient
                 externalBalanceUpdateResponseActiveDataList activeDataList;
                 externalBalanceUpdateResponseActiveBalanceList activeBalanceList;
 
-                service.externalBalanceUpdate(msisdn, promoId, changeList, out returnCode, out returnCodeSpecified, out returnDescription, out requiredRecharge, out activeDataList, out activeBalanceList);
+                service.externalBalanceUpdate(par.msisdn, par.promoId, changeList, out returnCode, out returnCodeSpecified, out returnDescription, out requiredRecharge, out activeDataList, out activeBalanceList);
 
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("returnCode=" + returnCode.ToString());
@@ -96,5 +96,17 @@ namespace FlexibleRewardingTestClient
 
         }
     }
+
+    public class Parameters
+    {
+        public long msisdn { get; set; }
+        public string promoId { get; set; }
+        public string balanceChangeValue { get; set; }
+        public string balanceLabel { get; set; }
+        public string eobTimeOverride { get; set; }
+        public string expiryChange { get; set; }
+        public string extendFromEOB { get; set; }
+    }
+
 }
 /**/

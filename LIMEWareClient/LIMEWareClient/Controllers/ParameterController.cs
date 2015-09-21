@@ -29,18 +29,24 @@ namespace LIMEWareClient.Controllers
         }
 
         // POST: api/Parameter
-        public void Post([FromBody]string value)
+        public FlexibleRewardingTestClient.Parameters Post(FlexibleRewardingTestClient.Parameters param)
         {
+            FlexibleRewardingTestClient.Proxy p = new FlexibleRewardingTestClient.Proxy(@"http://10.235.3.47:5004/MobileWebSvc");
+            var r = p.externalBalanceUpdate(param);
+
+            return param;
         }
 
         // PUT: api/Parameter/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/Parameter/5
         public void Delete(int id)
         {
+
         }
     }
 }
